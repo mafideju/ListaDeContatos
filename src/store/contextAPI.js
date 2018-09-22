@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 const Context = React.createContext();
 
 const reducer = (state, action) => {
-  console.log(state);
-
   switch (action.type) {
     case 'DELETE_CONTACT':
       return {
@@ -42,9 +40,7 @@ export class Provider extends Component {
         company: 'Weather Report'
       }
     ],
-    dispatch: action => {
-      this.setState(state => reducer(state, action));
-    }
+    dispatch: action => this.setState(state => reducer(state, action))
   };
 
   render() {

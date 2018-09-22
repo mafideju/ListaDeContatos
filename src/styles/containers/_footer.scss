@@ -15,6 +15,18 @@
       color: white;
       font-size: $md-size;
       text-align: center;
+      padding: 1rem 0;
+
+      &-links:active,
+      &-links:visited {
+        color: white;
+      }
+
+      &-links:hover {
+        color: yellow;
+        font-size: $md-size * 1.15;
+        font-style: italic;
+      }
     }
   }
 }
