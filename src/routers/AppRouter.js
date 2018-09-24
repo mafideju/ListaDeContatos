@@ -5,7 +5,7 @@ import { Provider } from '../store/contextAPI';
 
 import LoginPage from '../containers/LoginPage';
 
-// import Contact from '../components/Contact';
+import EditContact from '../components/EditContact';
 import DashboardPage from '../components/DashboardPage';
 import AddContact from '../components/AddContact';
 import HelpPage from '../components/HelpPage';
@@ -21,7 +21,7 @@ const AppRouter = () => (
         <Route exact path="/" component={LoginPage} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
         <PrivateRoute path="/add" component={AddContact} />
-        {/*<PrivateRoute path="/contact" component={Contact} />*/}
+        <PrivateRoute path="/edit/:id" component={EditContact} />
         <Route path="/help" component={HelpPage} />
         <Route component={NotFoundPage} />
       </Switch>

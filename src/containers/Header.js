@@ -19,8 +19,8 @@ export const Header = ({ startLogout }) => (
         <NavLink className="button button--logout" to="/add">
           Novo
         </NavLink>
-        <NavLink className="button button--logout" to="/about">
-          Sobre
+        <NavLink className="button button--logout" to="/edit">
+          Editar
         </NavLink>
         {/*
 

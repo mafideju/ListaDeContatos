@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Consumer } from '../store/contextAPI';
+import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // MODEL //
 class Contact extends Component {
@@ -11,9 +13,18 @@ class Contact extends Component {
       displayData: !this.state.displayData
     });
   };
-  onRemoveClick = (id, dispatch) => {
-    dispatch({ type: 'DELETE_CONTACT', payload: id });
+  onRemoveClick = async (id, dispatch) => {
+    try {
+      await Axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    } catch (e) {
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    }
   };
+  // onRemoveClick = (id, dispatch) => {
+  //   dispatch({ type: 'DELETE_CONTACT', payload: id });
+  // };
+
   render() {
     return (
       <Consumer>
@@ -51,6 +62,21 @@ class Contact extends Component {
                       src="/icons/delete-red.svg"
                       alt=""
                     />
+
+                    <Link to={`/edit/${this.props.id}`}>
+                      {' '}
+                      <img
+                        style={{
+                          width: '2.4rem',
+                          marginRight: '1rem',
+                          float: 'right',
+                          cursor: 'pointer'
+                        }}
+                        className="icons"
+                        src="/icons/edit.svg"
+                        alt=""
+                      />
+                    </Link>
                   </h4>
                 </div>
                 {this.state.displayData ? (

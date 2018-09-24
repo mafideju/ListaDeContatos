@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Consumer } from '../store/contextAPI';
+
 import Axios from 'axios';
 
-class AddContact extends Component {
+class EditContact extends Component {
   state = {
     name: '',
     email: '',
@@ -11,13 +12,28 @@ class AddContact extends Component {
     error: {}
   };
 
+  async componentDidMount() {
+    const res = await Axios.get(
+      `https://jsonplaceholder.typicode.com/users/${this.props.match.params.id}`
+    );
+
+    const contact = res.data;
+
+    this.setState({
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+      company: contact.company
+    });
+  }
+
   onInputChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  onSubmit = (dispatch, e) => {
+  onSubmit = async (dispatch, e) => {
     e.preventDefault();
 
     if (this.state.name === '') {
@@ -30,16 +46,20 @@ class AddContact extends Component {
       });
     }
 
-    const newContact = {
+    const updateContact = {
       name: this.state.name,
       email: this.state.email,
-      phone: this.state.phone,
-      company: this.state.company
+      phone: this.state.phone
     };
 
-    Axios.post('https://jsonplaceholder.typicode.com/users', newContact).then(
-      res => dispatch({ type: 'ADD_CONTACT', payload: res.data })
+    const res = await Axios.put(
+      `https://jsonplaceholder.typicode.com/users/${
+        this.props.match.params.id
+      }`,
+      updateContact
     );
+
+    dispatch({ type: 'UPDATE_CONTACT', payload: res.data });
 
     this.setState({
       name: '',
@@ -51,13 +71,14 @@ class AddContact extends Component {
 
     this.props.history.push('/dashboard');
   };
+
   render() {
     return (
       <Consumer>
         {value => {
           return (
             <div className="content-container">
-              <h2>Adicionar Contato</h2>
+              <h2>Editar Contato</h2>
               <form
                 className="form"
                 onSubmit={this.onSubmit.bind(this, value.dispatch)}
@@ -111,7 +132,7 @@ class AddContact extends Component {
                 </div>
                 <input
                   type="submit"
-                  value="Add Contact"
+                  value="Edit Contact"
                   className="button button--expense button--expense__edit"
                 />
               </form>
@@ -123,4 +144,4 @@ class AddContact extends Component {
   }
 }
 
-export default AddContact;
+export default EditContact;
