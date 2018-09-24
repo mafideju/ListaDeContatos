@@ -1,0 +1,29 @@
+.not-found {
+  position: relative;
+
+  &__title {
+    color: white;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    font-size: 6rem;
+  }
+
+  &__subtitle {
+    color: white;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+  }
+
+  &,
+  img {
+    background-size: cover;
+    background-position: center center;
+    // width: 50%;
+  }
+}

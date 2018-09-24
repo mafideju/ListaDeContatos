@@ -16,10 +16,14 @@ export const Header = ({ startLogout }) => (
           />
           {/*<h1 className="header__title--animated-left">**Boilerplate**</h1>*/}
         </NavLink>
+        <NavLink className="button button--logout" to="/add">
+          Novo
+        </NavLink>
+        <NavLink className="button button--logout" to="/about">
+          Sobre
+        </NavLink>
         {/*
-    <NavLink to="/create" activeClassName="orange">
-      Criar
-    </NavLink>
+
     <NavLink to="/help" activeClassName="orange">
       Ajuda
     </NavLink>

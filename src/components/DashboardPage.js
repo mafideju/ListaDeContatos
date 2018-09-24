@@ -1,15 +1,13 @@
 import React from 'react';
-import Contact from './Contact';
 import Contacts from './Contacts';
-import { Provider } from '../store/contextAPI';
-import ES6 from '../ZONA/ES6';
+// import ES6 from '../ZONA/ES6';
+// import AddContact from './AddContact';
 
 const DashboardPage = () => (
-  <Provider>
-    <div className="content-container">
-      <Contacts />
-    </div>
-  </Provider>
+  <div className="content-container">
+    <Contacts />
+    {/*<AddContact />*/}
+  </div>
 );
 
 export default DashboardPage;
